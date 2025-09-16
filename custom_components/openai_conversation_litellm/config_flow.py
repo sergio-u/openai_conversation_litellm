@@ -25,6 +25,7 @@ from homeassistant.const import (
     CONF_API_KEY,
     CONF_LLM_HASS_API,
     CONF_NAME,
+    CONF_URL
 )
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers import llm
@@ -81,6 +82,7 @@ _LOGGER = logging.getLogger(__name__)
 STEP_USER_DATA_SCHEMA = vol.Schema(
     {
         vol.Required(CONF_API_KEY): str,
+        vol.Required(CONF_URL): str
     }
 )
 
@@ -442,6 +444,7 @@ class OpenAISubentryFlowHandler(ConfigSubentryFlow):
             client = openai.AsyncOpenAI(
                 api_key=self._get_entry().data[CONF_API_KEY],
                 http_client=get_async_client(self.hass),
+                base_url=self._get_entry().data[CONF_URL],
             )
             location_schema = vol.Schema(
                 {

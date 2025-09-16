@@ -5,7 +5,7 @@ import logging
 from homeassistant.const import CONF_LLM_HASS_API
 from homeassistant.helpers import llm
 
-DOMAIN = "openai_conversation"
+DOMAIN = "openai_conversation_litellm"
 LOGGER: logging.Logger = logging.getLogger(__package__)
 
 DEFAULT_CONVERSATION_NAME = "OpenAI Conversation"
